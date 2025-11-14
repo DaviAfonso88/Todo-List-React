@@ -1,8 +1,86 @@
-# React + Vite
+# 📝 Gerenciador de Tarefas (React)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Um aplicativo simples e funcional para gerenciamento de tarefas,
+desenvolvido com **React**, **React Router**, **TailwindCSS** e
+**LocalStorage**.\
+O usuário pode criar tarefas, marcá-las como concluídas, excluir e
+visualizar seus detalhes em uma página dedicada.
 
-Currently, two official plugins are available:
+## 🚀 Tecnologias Utilizadas
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- React
+- React Router DOM
+- TailwindCSS
+- Lucide Icons
+- LocalStorage
+- Vite
+
+## 📌 Funcionalidades
+
+- ➕ Adicionar tarefa com título e descrição\
+- ✔️ Marcar tarefa como concluída\
+- 🔎 Ver detalhes da tarefa\
+- 🗑️ Excluir tarefa\
+- 💾 Salvamento automático no LocalStorage\
+- 🔁 Carregar tarefas salvas ao abrir o app
+
+## 📂 Estrutura dos Componentes
+
+    src/
+      ├─ components/
+      │    ├─ AddTask.jsx
+      │    ├─ Button.jsx
+      │    ├─ Input.jsx
+      │    ├─ Tasks.jsx
+      │    └─ Title.jsx
+      ├─ pages/
+      │    └─ TaskPage.jsx
+      ├─ App.jsx
+      ├─ main.jsx
+      └─ index.css
+
+## 🧠 Lógica Principal
+
+### Salvando no LocalStorage
+
+```js
+useEffect(() => {
+  localStorage.setItem("list", JSON.stringify(list));
+}, [list]);
+```
+
+### Alternar tarefa concluída
+
+```js
+const newTasks = list.map((task) => {
+  if (task.id === taskId) {
+    return { ...task, isCompleted: !task.isCompleted };
+  }
+  return task;
+});
+```
+
+### Adicionar tarefa
+
+```js
+const newTask = {
+  id: list.length + 1,
+  title,
+  description,
+  isCompleted: false,
+};
+setList([...list, newTask]);
+```
+
+## ▶️ Como Rodar o Projeto
+
+```bash
+npm install
+npm run dev
+```
+
+Acesse: http://localhost:5173/
+
+## 📜 Licença
+
+Projeto livre para estudos e melhorias.
